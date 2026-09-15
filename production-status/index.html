@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light">
+<title>CLNR / Production Status</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,90,600&family=Figtree:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0B0B0C;--paper:#FFFFFF;--mute:#7C8085;--line:#E4E5E8;--red:#FF3B1F}
+*{box-sizing:border-box}html,body{margin:0;background:transparent;color:var(--ink)}body{font-family:Figtree,Arial,sans-serif}
+.monitor{position:relative;width:100%;min-height:250px;background:var(--paper);border:1px solid var(--line);overflow:hidden}
+.head{height:47px;padding:0 17px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);font-family:"Azeret Mono",monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.brand{color:var(--ink)}.live{display:flex;align-items:center;gap:7px}.dot{width:7px;height:7px;border-radius:50%;background:var(--red);display:inline-block}
+.grid{display:grid;grid-template-columns:1fr 1fr;min-height:202px}.cell{position:relative;padding:16px 17px 15px;display:flex;flex-direction:column;justify-content:space-between}.cell:nth-child(odd){border-right:1px solid var(--line)}.cell:nth-child(-n+2){border-bottom:1px solid var(--line)}
+.label,.sub,.code{font-family:"Azeret Mono",monospace;text-transform:uppercase;letter-spacing:.1em}.label{font-size:8px;color:var(--mute)}.value{font-family:"Azeret Mono",monospace;font-size:clamp(27px,4.4vw,42px);line-height:.92;letter-spacing:-.055em;font-weight:500;font-variant-numeric:tabular-nums}.sub{font-size:7px;color:var(--mute);margin-top:7px}.code{position:absolute;right:11px;bottom:10px;font-size:6px;color:#B5B7BA}.corner{position:absolute;right:9px;top:9px;width:13px;height:13px;border-top:1px solid var(--line);border-right:1px solid var(--line)}
+@media(max-width:520px){.monitor{min-height:220px}.head{height:42px}.grid{min-height:177px}.cell{padding:13px}.value{font-size:28px}.code{display:none}}
+</style>
+</head>
+<body>
+<main class="monitor" aria-label="CLNR production status monitor">
+<header class="head"><span class="brand">CLNR / STATUS MONITOR</span><span class="live"><i class="dot"></i>PRODUCTION ACTIVE</span></header>
+<section class="grid">
+<div class="cell"><i class="corner"></i><span class="label">In production</span><div><div class="value" id="production">05</div><div class="sub">Active episodes</div></div><span class="code">A01</span></div>
+<div class="cell"><i class="corner"></i><span class="label">Waiting on client</span><div><div class="value" id="waiting">01</div><div class="sub">Approval needed</div></div><span class="code">Q02</span></div>
+<div class="cell"><i class="corner"></i><span class="label">Next release</span><div><div class="value" id="release">SEP 22</div><div class="sub" id="releaseEp">EP 01</div></div><span class="code">OUT</span></div>
+<div class="cell"><i class="corner"></i><span class="label">Next shoot</span><div><div class="value" id="shoot">SEP 18</div><div class="sub" id="shootEp">EP 03</div></div><span class="code">REC</span></div>
+</section>
+</main>
+<script>
+const q=new URLSearchParams(location.search);const set=(id,key,d)=>document.getElementById(id).textContent=(q.get(key)||d).toUpperCase();
+set('production','production','05');set('waiting','waiting','01');set('release','release','SEP 22');set('releaseEp','releaseEp','EP 01');set('shoot','shoot','SEP 18');set('shootEp','shootEp','EP 03');
+</script>
+</body></html>
