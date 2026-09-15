@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CLNR / Rooms</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,90,600;12..96,100,700&family=Figtree:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0B0B0C;--paper:#FFFFFF;--mute:#7C8085;--line:#E4E5E8;--red:#FF3B1F;--teal:#1E3A36}
+*{box-sizing:border-box}html,body{margin:0;background:transparent;color:var(--ink)}body{font-family:Figtree,Arial,sans-serif;padding:0}.shell{width:100%;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.head{display:flex;justify-content:space-between;align-items:flex-end;padding:18px 0 16px;gap:20px}.eyebrow,.status,.meta,.num{font-family:"Azeret Mono",monospace;text-transform:uppercase;letter-spacing:.09em;font-size:10px}.eyebrow{color:var(--mute)}.head h1{font-family:"Bricolage Grotesque",Arial,sans-serif;font-size:clamp(25px,3.2vw,38px);line-height:1;margin:7px 0 0;font-weight:600;letter-spacing:-.035em}.status{display:flex;align-items:center;gap:8px;white-space:nowrap;color:var(--mute)}.dot{width:8px;height:8px;background:var(--red);border-radius:50%;display:inline-block}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}.card{position:relative;min-height:190px;padding:18px 18px 17px;text-decoration:none;color:var(--ink);border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;transition:transform .18s ease,background .18s ease,color .18s ease}.card:hover{background:#f6f6f6;transform:translateY(-2px);z-index:2}.card.dark{background:var(--ink);color:var(--paper);border-color:#29292b}.card.dark:hover{background:#151516}.card.monitor{background:var(--teal);color:var(--paper);border-color:#34514d}.card.monitor:hover{background:#24433e}.top{display:flex;justify-content:space-between;align-items:flex-start}.num{font-size:12px;color:var(--mute)}.dark .num,.monitor .num{color:rgba(255,255,255,.58)}.corner{width:18px;height:18px;border-top:1px solid currentColor;border-right:1px solid currentColor;opacity:.32}.title{font-family:"Bricolage Grotesque",Arial,sans-serif;font-weight:600;font-size:clamp(18px,2vw,24px);line-height:.98;letter-spacing:-.035em;max-width:11ch;margin-bottom:10px}.desc{font-size:12px;line-height:1.4;max-width:24ch;color:var(--mute)}.dark .desc,.monitor .desc{color:rgba(255,255,255,.66)}.foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:20px}.meta{font-size:8px;color:var(--mute)}.dark .meta,.monitor .meta{color:rgba(255,255,255,.55)}.arrow{font-family:"Azeret Mono",monospace;font-size:16px;line-height:1}.live{display:flex;gap:7px;align-items:center}.live .dot{width:7px;height:7px}
+.footer{display:flex;justify-content:space-between;gap:20px;padding:13px 0 0;color:var(--mute);font-family:"Azeret Mono",monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{min-height:175px}}@media(max-width:480px){.head{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.card{min-height:150px}.footer{display:none}}
+</style>
+</head>
+<body>
+<section class="shell">
+  <header class="head">
+    <div><div class="eyebrow">CLNR STUDIOS · VIEWFINDER / SERIES SYSTEM</div><h1>Production rooms.</h1></div>
+    <div class="status"><span class="dot"></span><span>System active</span></div>
+  </header>
+  <nav class="grid" aria-label="CLNR production rooms">
+    <a class="card dark" target="_blank" href="https://app.notion.com/p/3dc811af72ac81159578f47cf139d30d">
+      <div class="top"><span class="num">00</span><span class="corner"></span></div><div><div class="title">Control</div><div class="desc">Series overview, priorities and team focus.</div></div><div class="foot"><span class="meta">VIEWFINDER / HOME</span><span class="arrow">↗</span></div>
+    </a>
+    <a class="card" target="_blank" href="https://app.notion.com/p/3dc811af72ac815e8351e99ddd977097">
+      <div class="top"><span class="num">01</span><span class="corner"></span></div><div><div class="title">Script Room</div><div class="desc">Hooks, scripts, revisions and approvals.</div></div><div class="foot"><span class="meta">SLATE / WRITING</span><span class="arrow">↗</span></div>
+    </a>
+    <a class="card" target="_blank" href="https://app.notion.com/p/3dc811af72ac81d4bc87cd43de1d8b8b">
+      <div class="top"><span class="num">02</span><span class="corner"></span></div><div><div class="title">Pre-Production</div><div class="desc">Shot lists, readiness and production lock.</div></div><div class="foot"><span class="meta">SLATE / READY</span><span class="arrow">↗</span></div>
+    </a>
+    <a class="card" target="_blank" href="https://app.notion.com/p/3dc811af72ac81fea77fff5ec86cfd0d">
+      <div class="top"><span class="num">03</span><span class="corner"></span></div><div><div class="title">Production Floor</div><div class="desc">Shoots, footage, talent and call information.</div></div><div class="foot"><span class="meta">VIEWFINDER / SHOOT</span><span class="arrow">↗</span></div>
+    </a>
+    <a class="card" target="_blank" href="https://app.notion.com/p/3dc811af72ac8176ac90c78ee8a58624">
+      <div class="top"><span class="num">04</span><span class="corner"></span></div><div><div class="title">Post House</div><div class="desc">Edits, music, color, versions and notes.</div></div><div class="foot"><span class="meta">VIEWFINDER / POST</span><span class="arrow">↗</span></div>
+    </a>
+    <a class="card" target="_blank" href="https://app.notion.com/p/3dc811af72ac81af8480fcfdfc5e8c33">
+      <div class="top"><span class="num">05</span><span class="corner"></span></div><div><div class="title">Review Room</div><div class="desc">Internal review, client decisions and approval.</div></div><div class="foot"><span class="meta">SLATE / APPROVAL</span><span class="arrow">↗</span></div>
+    </a>
+    <a class="card monitor" target="_blank" href="https://app.notion.com/p/3dc811af72ac81ca87e9c12389cceba7">
+      <div class="top"><span class="num">06</span><span class="corner"></span></div><div><div class="title">Monitor + Delivery</div><div class="desc">Final exports, release state and published work.</div></div><div class="foot"><span class="meta live"><span class="dot"></span>MONITOR / OUTPUT</span><span class="arrow">↗</span></div>
+    </a>
+    <a class="card" target="_blank" href="https://app.notion.com/p/3dc811af72ac8184808eec09f68f116a">
+      <div class="top"><span class="num">07</span><span class="corner"></span></div><div><div class="title">Brand Vault</div><div class="desc">Identity, LUTs, motion, SFX and references.</div></div><div class="foot"><span class="meta">SLATE / ASSETS</span><span class="arrow">↗</span></div>
+    </a>
+  </nav>
+  <div class="footer"><span>A001 · CLNR SERIES SYSTEM</span><span>8 ROOMS · 24 FPS · 4K</span></div>
+</section>
+</body>
+</html>
