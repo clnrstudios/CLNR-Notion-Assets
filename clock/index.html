@@ -14,29 +14,37 @@
 .control{position:relative;width:100%;min-height:250px;background:var(--clnr-red);border:1px solid rgba(11,11,12,.12);padding:24px 28px 22px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
 .control:before,.control:after{content:"";position:absolute;width:34px;height:34px;border-color:rgba(255,255,255,.72);pointer-events:none}.control:before{left:13px;top:13px;border-left:1px solid;border-top:1px solid}.control:after{right:13px;bottom:13px;border-right:1px solid;border-bottom:1px solid}
 .top,.bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;text-transform:uppercase;font-size:10px;line-height:1.3;letter-spacing:.13em}.label{color:var(--paper)}.muted{color:var(--mute)}.live{display:flex;align-items:center;gap:9px;white-space:nowrap}.dot{width:9px;height:9px;border-radius:50%;background:var(--ink);display:inline-block;animation:tally 1s steps(1,end) infinite}@keyframes tally{0%,49%{opacity:1}50%,100%{opacity:.28}}
-.center{padding:26px 0 22px}.time{font-size:clamp(44px,8.6vw,86px);font-weight:400;line-height:.92;letter-spacing:-.065em;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}.date{margin-top:14px;font-family:"Bricolage Grotesque",Arial,sans-serif;font-size:clamp(14px,2vw,19px);font-weight:600;letter-spacing:-.01em}.rule{height:1px;background:var(--line);margin-bottom:16px}
-@media(max-width:560px){.control{min-height:210px;padding:20px}.top,.bottom{font-size:8px;letter-spacing:.1em}.center{padding:22px 0 18px}.time{font-size:44px}.date{font-size:14px}.bottom span:last-child{display:none}}
+.center{padding:26px 0 22px}.time{display:flex;align-items:baseline;gap:.08em;font-size:clamp(42px,7.8vw,82px);font-weight:400;line-height:.92;letter-spacing:-.065em;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}.milliseconds{font-size:.42em;letter-spacing:-.035em;color:var(--paper)}.date{margin-top:14px;font-family:"Bricolage Grotesque",Arial,sans-serif;font-size:clamp(14px,2vw,19px);font-weight:600;letter-spacing:-.01em}.rule{height:1px;background:var(--line);margin-bottom:16px}
+@media(max-width:560px){.control{min-height:210px;padding:20px}.top,.bottom{font-size:8px;letter-spacing:.1em}.center{padding:22px 0 18px}.time{font-size:38px;gap:.05em}.milliseconds{font-size:.38em}.date{font-size:14px}.bottom span:last-child{display:none}}
 </style>
 </head>
 <body>
 <main class="control" aria-label="CLNR Studios production control clock">
   <div class="top"><span class="label">CLNR / CONTROL</span><span class="live"><i class="dot" aria-hidden="true"></i><span>PRODUCTION ACTIVE</span></span></div>
-  <div class="center"><div class="time" id="clock">00:00:00</div><div class="date" id="date">TUE · SEP 15 · LOS ANGELES</div></div>
+  <div class="center"><div class="time"><span id="clock">00:00:00</span><span class="milliseconds" id="milliseconds">.000</span></div><div class="date" id="date">TUE · SEP 15 · LOS ANGELES</div></div>
   <div><div class="rule"></div><div class="bottom muted"><span>LOCAL TIME / 24 FPS</span><span>VIEWFINDER 01</span></div></div>
 </main>
 <script>
 const zone='America/Los_Angeles';
 const timeEl=document.getElementById('clock');
+const millisecondsEl=document.getElementById('milliseconds');
 const dateEl=document.getElementById('date');
+let lastDate='';
 function update(){
  const now=new Date();
  const time=new Intl.DateTimeFormat('en-US',{timeZone:zone,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now);
- const parts=new Intl.DateTimeFormat('en-US',{timeZone:zone,weekday:'short',month:'short',day:'2-digit'}).formatToParts(now);
- const get=t=>(parts.find(p=>p.type===t)||{}).value||'';
  timeEl.textContent=time;
- dateEl.textContent=`${get('weekday').toUpperCase()} · ${get('month').toUpperCase()} ${get('day')} · LOS ANGELES`;
+ millisecondsEl.textContent=`.${String(now.getMilliseconds()).padStart(3,'0')}`;
+ const dateKey=now.toLocaleDateString('en-CA',{timeZone:zone});
+ if(dateKey!==lastDate){
+  const parts=new Intl.DateTimeFormat('en-US',{timeZone:zone,weekday:'short',month:'short',day:'2-digit'}).formatToParts(now);
+  const get=t=>(parts.find(p=>p.type===t)||{}).value||'';
+  dateEl.textContent=`${get('weekday').toUpperCase()} · ${get('month').toUpperCase()} ${get('day')} · LOS ANGELES`;
+  lastDate=dateKey;
+ }
+ requestAnimationFrame(update);
 }
-update();setInterval(update,250);
+requestAnimationFrame(update);
 </script>
 </body>
 </html>
